@@ -1,0 +1,16 @@
+html,
+body {
+  color: #555;
+  font-size: 18px;
+  margin: 0;
+}
+
+main {
+  padding: 25px;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
