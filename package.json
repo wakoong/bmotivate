@@ -1,4 +1,20 @@
 {
+  "name": "bmotivate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/wakoong/bmotivate.git",
+  "author": "Woosik Koong <woosik.koong@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "serve": "gatsby serve"
+  },
+  "dependencies": {
+    "gatsby": "^2.23.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
   "devDependencies": {
     "prettier": "^2.0.5"
   }
