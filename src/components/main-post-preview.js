@@ -4,11 +4,12 @@ import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
 
-const MainArticle = styled.article`
+const MainArticle = styled(Link)`
   height: 40rem;
   margin-bottom: 1em;
   border-bottom: 1px solid black;
   cursor: pointer;
+  text-align: center;
 
   &:hover {
     opacity: 0.5;
@@ -30,7 +31,7 @@ const MainArticle = styled.article`
 
 const MainPostPreview = ({ post }) => {
   return (
-    <MainArticle>
+    <MainArticle to={`/${post.slug}`}>
       <h3>{post.title}</h3>
     </MainArticle>
   );

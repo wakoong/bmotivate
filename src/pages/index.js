@@ -4,10 +4,9 @@ import { Link } from "gatsby";
 // my imports
 import Layout from "../components/layout";
 import MainPostPreview from "../components/main-post-preview";
+import PostPreview from "../components/post-preview";
+import Hero from "../components/hero";
 import usePosts from "../hooks/usePosts";
-import JL from "../images/png/JL.jpg";
-import SC from "../images/png/SC.jpg";
-import SL from "../images/png/SL.jpg";
 // other imports
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
@@ -18,10 +17,6 @@ const HomeContainer = styled.div`
   grid-template-columns: 1fr;
   justify-content: center;
   background: #eee;
-
-  @media (min-width: 1440px) {
-    padding: 1em;
-  }
 `;
 
 const MainArticlesContainer = styled.div`
@@ -34,7 +29,27 @@ const MainArticlesContainer = styled.div`
   }
 `;
 
-const LatestArticlesContainer = styled.div``;
+const LatestArticlesContainer = styled.div`
+  display: grid;
+  grid-template-rows: 4em 1fr;
+  grid-template-columns: 1fr;
+  margin: 0 1.25em;
+`;
+
+const ArticlesWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  width: calc(100% - 2.5em);
+  height: calc(100% - 4em);
+  border: 1px solid black;
+  margin: 0 1.25em;
+
+  @media (min-width: 1440px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+`;
 
 const Header = styled.header`
   position: relative;
@@ -51,17 +66,39 @@ const Main = styled.main`
 
 export default () => {
   const posts = usePosts();
-  console.log({ posts });
+
   return (
-    <Layout>
-      <HomeContainer>
-        <MainArticlesContainer>
-          {posts.map((post) => (
-            <MainPostPreview key={post.slug} post={post} />
-          ))}
-        </MainArticlesContainer>
-        <LatestArticlesContainer>1</LatestArticlesContainer>
-      </HomeContainer>
-    </Layout>
+    <>
+      {/* <Hero /> */}
+      <Layout>
+        <HomeContainer>
+          <MainArticlesContainer>
+            {posts.map((post) => (
+              <MainPostPreview key={post.slug} post={post} />
+            ))}
+          </MainArticlesContainer>
+          <LatestArticlesContainer>
+            <div
+              css={css`
+                font-size: 0.75rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                padding: 0.75em 0 1.5em 0;
+                margin: 0 1.25em;
+              `}
+            >
+              <h3>LATEST STORIES</h3>
+              <h4>Read more</h4>
+            </div>
+            <ArticlesWrapper>
+              <PostPreview />
+              <PostPreview />
+              <PostPreview />
+            </ArticlesWrapper>
+          </LatestArticlesContainer>
+        </HomeContainer>
+      </Layout>
+    </>
   );
 };

@@ -27,11 +27,12 @@ const Header = () => (
       position: fixed;
       width: 100%;
       top: 0;
-      background: transparent;
+      background: white;
       border-bottom: 1px solid #ddd;
       padding: 1em 0.5em;
       display: flex;
       justify-content: space-between;
+      z-index: 1000;
     `}
   >
     <NavLink to="/" fontWeight="bold">
