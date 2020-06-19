@@ -11,6 +11,13 @@ const usePost = () => {
               date
               slug
               title
+              images {
+                sharp: childImageSharp {
+                  fluid(maxWidth: 500, maxHeight: 500) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
             }
           }
         }
@@ -19,13 +26,14 @@ const usePost = () => {
   `);
 
   return data.allMdx.edges.map((post) => {
-    const { title, author, slug, date } = post.node.frontmatter;
+    const { title, author, slug, date, images } = post.node.frontmatter;
 
     return {
       title,
       author,
       slug,
       date,
+      images,
     };
   });
 };

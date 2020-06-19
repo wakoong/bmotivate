@@ -4,22 +4,22 @@ import { graphql, Link } from "gatsby";
 // my imports
 import { Layout, PreviewCard } from "../components";
 import MainPhoto from "../../images/jeremy-lin.jpg";
+import usePost from "../hooks/usePost";
 // other imports
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 3fr 1fr 8fr;
-  height: calc(100% + 10rem);
+  grid-template-rows: 30% 10em auto;
 `;
 
 const MainCardPreview = styled.div`
+  padding-bottom: 1em;
   > img {
     height: 100%;
     width: 100%;
-    background-size: cover;
+    object-fit: cover;
   }
 `;
 
@@ -28,28 +28,30 @@ const QuoteBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
-  color: black;
-  padding: 3em;
+  width: 70%;
+  margin: 0 auto;
 `;
 
 const CardWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-gap: 1rem;
-  background: #eee;
-  padding: 1rem;
-`;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-gap: 1em;
+  width: 100%;
+  max-width: 90em;
+  min-height: 500px;
+  margin: 0 auto;
+  padding: 1em;
 
-const Card = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 2fr 1fr;
-  border: 1px solid black;
+  /* not sure why */
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
 `;
 
 export default () => {
+  const post = usePost();
   return (
     <Layout>
       <Container>
@@ -67,14 +69,9 @@ export default () => {
           <p> - Kobe Bryant</p>
         </QuoteBox>
         <CardWrapper>
-          <PreviewCard />
-          <PreviewCard />
-          <PreviewCard />
-          <PreviewCard />
-          <PreviewCard />
-          <PreviewCard />
-          <PreviewCard />
-          <PreviewCard />
+          {post.map((p) => (
+            <PreviewCard post={p} />
+          ))}
         </CardWrapper>
       </Container>
     </Layout>

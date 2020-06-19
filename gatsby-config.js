@@ -1,11 +1,13 @@
 module.exports = {
   plugins: [
     "gatsby-plugin-emotion",
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: "gatsby-plugin-mdx",
       options: {
         extensions: [".mdx", ".md"],
-        gatsbyRemarkPlugins: [],
+        gatsbyRemarkPlugins: ["gatsby-remark-images"],
         defaultLayout: {
           default: require.resolve("./src/components/Layout.js"),
         },
@@ -16,6 +18,13 @@ module.exports = {
       options: {
         name: "posts",
         path: `${__dirname}/posts/`,
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "images",
+        path: `${__dirname}/images/`,
       },
     },
   ],

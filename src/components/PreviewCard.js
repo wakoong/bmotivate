@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "gatsby";
 
+import Image from "gatsby-image";
+import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 
 const Container = styled(Link)`
@@ -10,6 +12,7 @@ const Container = styled(Link)`
   border: 1px solid black;
   text-align: center;
   background: grey;
+  min-height: 10em;
 
   > div:first-of-type {
     background: #e3e3e3;
@@ -17,10 +20,19 @@ const Container = styled(Link)`
   }
 `;
 
-const PreviewCard = () => {
+const PreviewCard = ({ post }) => {
+  console.log({ post });
   return (
     <Container>
-      <div>Img</div>
+      <Image
+        css={css`
+          * {
+            margin-top: 0;
+          }
+        `}
+        fluid={post.images.sharp.fluid}
+        alt={post.title}
+      />
       <div>title</div>
     </Container>
   );
