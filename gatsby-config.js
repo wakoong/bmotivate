@@ -9,7 +9,7 @@ module.exports = {
         extensions: [".mdx", ".md"],
         gatsbyRemarkPlugins: ["gatsby-remark-images"],
         defaultLayout: {
-          default: require.resolve("./src/components/Layout.js"),
+          default: require.resolve("./src/styles/Layout.js"),
         },
       },
     },
