@@ -29,3 +29,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     });
   });
 };
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    node: {
+      fs: "empty",
+    },
+  });
+};
