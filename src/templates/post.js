@@ -3,10 +3,12 @@ import React from "react";
 import { graphql } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 // my imports
-import Layout from "../components/Layout";
+import { Layout } from "../styles";
 import { usePost } from "../hooks";
 // other imports
 import styled from "@emotion/styled";
+import { css } from "@emotion/core";
+import Image from "gatsby-image";
 
 export const query = graphql`
   query($slug: String!) {
@@ -14,6 +16,14 @@ export const query = graphql`
       frontmatter {
         title
         author
+        date
+        images {
+          sharp: childImageSharp {
+            fluid(maxWidth: 500, maxHeight: 500) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
       body
     }
@@ -25,32 +35,77 @@ const Container = styled.div`
   grid-template-rows: 20em auto;
   grid-template-columns: 1fr;
   height: 100%;
+  max-width: 680px;
+  margin: 3.75em auto 0 auto;
 `;
 
 const ImageWrapper = styled.div``;
 
 const PostWrapper = styled.div`
+  min-height: calc(100vh - 25em);
   width: 100%;
-  margin: 0 auto;
-  border: 1px solid black;
-  padding: 1em;
+  padding: 2em;
+  font-size: 1rem;
 
   @media (min-width: 768px) {
-    width: 80%;
+    padding: 4em 0;
+  }
+
+  header {
+    text-align: start;
+
+    .title,
+    .sub-title {
+      margin-bottom: 0;
+    }
+
+    .title {
+      font-weight: 400;
+    }
+
+    .sub-title {
+      font-size: 1.1em;
+      color: rgba(117, 117, 117, 1);
+    }
+
+    .date {
+      font-size: 1em;
+    }
+  }
+
+  body {
+    text-align: justify;
   }
 `;
 
 const Post = ({ data }) => {
   const { body } = data.mdx;
-  const { title, author } = data.mdx.frontmatter;
+  const { title, date, images } = data.mdx.frontmatter;
+  const dateRegex = /T.*/g;
+
   return (
     <Layout>
       <Container>
-        <div>img</div>
+        <Image
+          css={css`
+            * {
+              margin-top: 0;
+            }
+          `}
+          fluid={images.sharp.fluid}
+          alt={title}
+        />
         <PostWrapper>
-          <h1>{title}</h1>
-          <h3>Posted by {author}</h3>
-          <MDXRenderer>{body}</MDXRenderer>
+          <header>
+            <h1 className="title">{title}</h1>
+            <p className="sub-title">
+              Lorem ipsum dolor sit amet, vim facer saperet ei, veritus
+            </p>
+            <p className="date">Posted by {date.replace(dateRegex, "")}</p>
+          </header>
+          <body>
+            <MDXRenderer>{body}</MDXRenderer>
+          </body>
         </PostWrapper>
       </Container>
     </Layout>
