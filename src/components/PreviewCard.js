@@ -8,22 +8,38 @@ import styled from "@emotion/styled";
 const Container = styled(Link)`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 2fr 1fr;
-  border: 1px solid black;
-  text-align: center;
-  background: grey;
-  min-height: 10em;
+  grid-template-rows: 10em 1fr;
+  text-align: start;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 
-  > div:first-of-type {
-    background: #e3e3e3;
-    border-bottom: 1px solid black;
+  :hover {
+    opacity: 0.5;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+
+    padding: 1em;
+
+    .date {
+      font-size: 1rem;
+      font-weight: 400;
+      color: grey;
+    }
+
+    .title {
+      font-weight: 700;
+    }
   }
 `;
 
 const PreviewCard = ({ post }) => {
-  console.log({ post });
+  const { title, date, slug } = post;
+  const dateRegex = /T.*/g;
   return (
-    <Container>
+    <Container to={`/${slug}`}>
       <Image
         css={css`
           * {
@@ -33,7 +49,10 @@ const PreviewCard = ({ post }) => {
         fluid={post.images.sharp.fluid}
         alt={post.title}
       />
-      <div>title</div>
+      <div className="description">
+        <div className="date">{date.replace(dateRegex, "")}</div>
+        <div className="title">{title}</div>
+      </div>
     </Container>
   );
 };

@@ -2,19 +2,20 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
 // my imports
-import { Layout, PreviewCard } from "../components";
+import { PreviewCard } from "../components";
+import { Layout } from "../styles";
 import MainPhoto from "../../images/jeremy-lin.jpg";
 import usePost from "../hooks/usePost";
 // other imports
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 
-const Container = styled.div`
+const MainContainer = styled.div`
   display: grid;
-  grid-template-rows: 30% 10em auto;
+  grid-template-rows: 30em 10em auto;
 `;
 
-const MainCardPreview = styled.div`
+const HeadlinePreviewContainer = styled.div`
   padding-bottom: 1em;
   > img {
     height: 100%;
@@ -23,7 +24,7 @@ const MainCardPreview = styled.div`
   }
 `;
 
-const QuoteBox = styled.div`
+const QuoteContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,21 +33,18 @@ const QuoteBox = styled.div`
   margin: 0 auto;
 `;
 
-const CardWrapper = styled.div`
+const PostsPreviewContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(48%, 1fr));
   grid-gap: 1em;
   width: 100%;
-  max-width: 90em;
-  min-height: 500px;
+
   margin: 0 auto;
   padding: 1em;
 
-  /* not sure why */
-  overflow: hidden;
-
   @media (min-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+    max-width: 1440px;
   }
 `;
 
@@ -54,11 +52,11 @@ export default () => {
   const post = usePost();
   return (
     <Layout>
-      <Container>
-        <MainCardPreview>
+      <MainContainer>
+        <HeadlinePreviewContainer>
           <img src={MainPhoto} alt="main photo" />
-        </MainCardPreview>
-        <QuoteBox>
+        </HeadlinePreviewContainer>
+        <QuoteContainer>
           <p>
             <i>
               "Everything negative - pressure, challenges - is all an
@@ -67,13 +65,13 @@ export default () => {
           </p>
           <br></br>
           <p> - Kobe Bryant</p>
-        </QuoteBox>
-        <CardWrapper>
+        </QuoteContainer>
+        <PostsPreviewContainer>
           {post.map((p) => (
-            <PreviewCard post={p} />
+            <PreviewCard key={p.slug} post={p} />
           ))}
-        </CardWrapper>
-      </Container>
+        </PostsPreviewContainer>
+      </MainContainer>
     </Layout>
   );
 };

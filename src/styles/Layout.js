@@ -36,11 +36,15 @@ export const Layout = ({ children }) => {
             padding: 0;
             margin: 0;
             line-height: 1.6;
-            font-size: 18px;
+            font-size: 16px;
             color: ${theme.black};
             font-family: "Neue Montreal";
 
             @media (min-width: 768px) {
+              font-size: 18px;
+            }
+
+            @media (min-width: 1200px) {
               font-size: 21px;
             }
           }
@@ -56,6 +60,12 @@ export const Layout = ({ children }) => {
           h5,
           p {
             margin-top: 0;
+          }
+
+          h1,
+          h2,
+          h3 {
+            margin-bottom: 0;
           }
 
           a {
