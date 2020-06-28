@@ -1,28 +1,22 @@
 // react imports
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql, StaticQuery } from "gatsby";
 // my imports
-import { PreviewCard } from "../components";
+import { Hero, PreviewCard } from "../components";
 import { Layout } from "../styles";
-import MainPhoto from "../../images/jeremy-lin.jpg";
+// import MainPhoto from "../../images/jeremy-lin.jpg";
 import usePost from "../hooks/usePost";
 // other imports
-import { css } from "@emotion/core";
+import BackgroundImage from "gatsby-background-image";
 import styled from "@emotion/styled";
 
 const MainContainer = styled.div`
   display: grid;
-  grid-template-rows: 30em 10em auto;
+  grid-template-rows: 50vh auto auto;
+  margin-top: 3.75em;
 `;
 
-const HeadlinePreviewContainer = styled.div`
-  padding-bottom: 1em;
-  > img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
-`;
+const Section = styled.section``;
 
 const QuoteContainer = styled.div`
   display: flex;
@@ -50,12 +44,13 @@ const PostsPreviewContainer = styled.div`
 
 export default () => {
   const post = usePost();
+
   return (
     <Layout>
       <MainContainer>
-        <HeadlinePreviewContainer>
-          <img src={MainPhoto} alt="main photo" />
-        </HeadlinePreviewContainer>
+        <Section>
+          <Hero />
+        </Section>
         <QuoteContainer>
           <p>
             <i>
