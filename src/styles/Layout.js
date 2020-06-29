@@ -22,6 +22,8 @@ export const Layout = ({ children }) => {
             font-style: normal;
           }
 
+         
+
           html {
             box-sizing: border-box;
           }

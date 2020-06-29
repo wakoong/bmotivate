@@ -2,7 +2,7 @@
 import React from "react";
 import { graphql, StaticQuery } from "gatsby";
 // my imports
-import { Hero, PreviewCard } from "../components";
+import { BlockQuote, Hero, PreviewCard } from "../components";
 import { Layout } from "../styles";
 // import MainPhoto from "../../images/jeremy-lin.jpg";
 import usePost from "../hooks/usePost";
@@ -12,20 +12,17 @@ import styled from "@emotion/styled";
 
 const MainContainer = styled.div`
   display: grid;
-  grid-template-rows: 50vh auto auto;
+  grid-template-rows: 50vh 40vh auto;
+  grid-gap: 1em;
   margin-top: 3.75em;
+
+  @media (min-width: 768px) {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
 `;
 
 const Section = styled.section``;
-
-const QuoteContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-  margin: 0 auto;
-`;
 
 const PostsPreviewContainer = styled.div`
   display: grid;
@@ -51,16 +48,9 @@ export default () => {
         <Section>
           <Hero />
         </Section>
-        <QuoteContainer>
-          <p>
-            <i>
-              "Everything negative - pressure, challenges - is all an
-              opportunity for me to rise."
-            </i>
-          </p>
-          <br></br>
-          <p> - Kobe Bryant</p>
-        </QuoteContainer>
+        <Section>
+          <BlockQuote />
+        </Section>
         <PostsPreviewContainer>
           {post.map((p) => (
             <PreviewCard key={p.slug} post={p} />
