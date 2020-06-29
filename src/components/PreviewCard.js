@@ -9,29 +9,28 @@ const Container = styled(Link)`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 10em 1fr;
-  text-align: start;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
+  filter: grayscale(1);
+  text-align: center;
   cursor: pointer;
+  overflow: hidden;
+`;
 
-  :hover {
-    opacity: 0.5;
+const Description = styled.div`
+  width: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1em;
+
+  .date {
+    font-size: 1rem;
+    font-weight: 400;
+    color: grey;
   }
 
-  .description {
-    display: flex;
-    flex-direction: column;
-
-    padding: 1em;
-
-    .date {
-      font-size: 1rem;
-      font-weight: 400;
-      color: grey;
-    }
-
-    .title {
-      font-weight: 700;
-    }
+  .title {
+    font-weight: 700;
   }
 `;
 
@@ -49,10 +48,11 @@ const PreviewCard = ({ post }) => {
         fluid={post.images.sharp.fluid}
         alt={post.title}
       />
-      <div className="description">
+      <Description>
+        <div className="description"></div>
         <div className="date">{date.replace(dateRegex, "")}</div>
         <div className="title">{title}</div>
-      </div>
+      </Description>
     </Container>
   );
 };

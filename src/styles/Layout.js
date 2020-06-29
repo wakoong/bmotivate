@@ -22,8 +22,6 @@ export const Layout = ({ children }) => {
             font-style: normal;
           }
 
-         
-
           html {
             box-sizing: border-box;
           }
@@ -41,6 +39,7 @@ export const Layout = ({ children }) => {
             font-size: 16px;
             color: ${theme.black};
             font-family: "Neue Montreal";
+            background: #ededee;
 
             @media (min-width: 768px) {
               font-size: 18px;

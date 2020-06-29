@@ -1,19 +1,16 @@
 // react imports
 import React from "react";
-import { graphql, StaticQuery } from "gatsby";
 // my imports
 import { BlockQuote, Hero, PreviewCard } from "../components";
 import { Layout } from "../styles";
-// import MainPhoto from "../../images/jeremy-lin.jpg";
 import usePost from "../hooks/usePost";
 // other imports
-import BackgroundImage from "gatsby-background-image";
 import styled from "@emotion/styled";
 
 const MainContainer = styled.div`
   display: grid;
   grid-template-rows: 50vh 40vh auto;
-  grid-gap: 1em;
+  grid-gap: 0.5em;
   margin-top: 3.75em;
 
   @media (min-width: 768px) {
@@ -22,20 +19,43 @@ const MainContainer = styled.div`
   }
 `;
 
-const Section = styled.section``;
+const Section = styled.section`
+  text-align: ${(props) => props.textAlign};
 
-const PostsPreviewContainer = styled.div`
+  h1,
+  .arrow-link {
+    padding: 2em 0;
+    font-weight: 900;
+  }
+
+  .label {
+    padding-bottom: 0.5em;
+  }
+  .label:hover {
+    border-bottom: 3px solid black;
+    cursor: pointer;
+  }
+
+  .arrow {
+    position: absolute;
+  }
+`;
+
+const PostsPreviewContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(48%, 1fr));
   grid-gap: 1em;
   width: 100%;
-
   margin: 0 auto;
   padding: 1em;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
     max-width: 1440px;
+  }
+
+  @media (min-width: 1440px) {
+    padding: 0;
   }
 `;
 
@@ -51,11 +71,18 @@ export default () => {
         <Section>
           <BlockQuote />
         </Section>
-        <PostsPreviewContainer>
-          {post.map((p) => (
-            <PreviewCard key={p.slug} post={p} />
-          ))}
-        </PostsPreviewContainer>
+        <Section textAlign="center" padding="4em 0">
+          <h1>LATEST STORIES</h1>
+          <PostsPreviewContainer>
+            {post.slice(0, 8).map((p) => (
+              <PreviewCard key={p.slug} post={p} />
+            ))}
+          </PostsPreviewContainer>
+          <div className="arrow-link">
+            <span className="label">More Stories</span>
+            <div className="arrow"></div>
+          </div>
+        </Section>
       </MainContainer>
     </Layout>
   );
