@@ -1,6 +1,6 @@
 import Burger from "./Burger";
 import BlockQuote from "./BlockQuote";
-import Header from "./header";
+import Header from "./Header";
 import Hero from "./Hero";
 import Footer from "./Footer";
 import Menu from "./Menu";
