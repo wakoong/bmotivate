@@ -1,5 +1,5 @@
 // React imports
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "gatsby";
 // My imports
 import Burger from "./Burger";
@@ -16,9 +16,8 @@ const Container = styled.nav`
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   background: white;
-  color: black;
   z-index: 1000;
-  padding: 0 1em;
+  font-weight: bold;
 
   @media (max-width: 768px) {
     h1 {
@@ -29,6 +28,7 @@ const Container = styled.nav`
 
 const Block = styled.div`
   display: flex;
+  color: white;
   justify-content: ${(props) => (props.jc ? props.jc : "center")};
   align-items: ${(props) => (props.ai ? props.ai : "center")};
 

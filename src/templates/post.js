@@ -47,10 +47,6 @@ const PostWrapper = styled.div`
   padding: 2em;
   font-size: 1rem;
 
-  @media (min-width: 768px) {
-    padding: 4em 0;
-  }
-
   header {
     text-align: start;
 
@@ -73,8 +69,13 @@ const PostWrapper = styled.div`
     }
   }
 
-  body {
+  div {
     text-align: justify;
+  }
+
+  @media (min-width: 768px) {
+    padding: 4em 0;
+    font-size: 1.2rem;
   }
 `;
 
@@ -103,9 +104,9 @@ const Post = ({ data }) => {
             </p>
             <p className="date">Posted by {date.replace(dateRegex, "")}</p>
           </header>
-          <body>
+          <div>
             <MDXRenderer>{body}</MDXRenderer>
-          </body>
+          </div>
         </PostWrapper>
       </Container>
     </Layout>
