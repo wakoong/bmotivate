@@ -1,5 +1,6 @@
 // react imports
 import React from "react";
+import { Link } from "gatsby";
 // my imports
 import { BlockQuote, Hero, PreviewCard } from "../components";
 import { Layout } from "../styles";
@@ -79,8 +80,9 @@ export default () => {
             ))}
           </PostsPreviewContainer>
           <div className="arrow-link">
-            <span className="label">More Stories</span>
-            <div className="arrow"></div>
+            <Link to="/stories">
+              <span className="label">More Stories</span>
+            </Link>
           </div>
         </Section>
       </MainContainer>
