@@ -10,9 +10,9 @@ import styled from "@emotion/styled";
 /* CSS referred from https://github.com/jlengstorf/frontendmasters-gatsby/blob/step5/hero-image/src/components/hero.js */
 const ImageBackground = styled(BackgroundImage)`
   filter: grayscale(100%);
-  background-position: center;
+  background-position: top;
   background-size: cover;
-  height: 50vh;
+  height: 100%;
   /* override the default margin for sibling elements  */
   + * {
     margin-top: 0;
@@ -31,13 +31,13 @@ const TextBox = styled.div`
   width: 100%;
 
   h1 {
-    text-shadow: 1px 1px 3px #eeddff66;
     font-size: 2.25rem;
+    padding-bottom: 0.3em;
   }
   p,
   a {
     color: white;
-    text-transform: uppercase;
+    letter-spacing: 0.04em;
     margin-top: 0;
   }
   a {
@@ -54,7 +54,7 @@ const Hero = () => {
       <ImageBackground Tag="section" fluid={fluid} fadeIn="soft">
         <TextBox>
           <h1>{title}</h1>
-          <p>{author}</p>
+          <p>The journey begins</p>
         </TextBox>
       </ImageBackground>
     </Link>

@@ -21,8 +21,7 @@ const TextBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* font-family: "Special Elite"; */
-  color: white;
+  color: black;
   height: 100%;
   padding: 1em;
   letter-spacing: 0.2em;
@@ -33,8 +32,9 @@ const TextBox = styled.div`
   }
 
   @media (min-width: 768px) {
-    width: 80%;
-    margin: 0 1.5em 0 auto;
+    width: 90%;
+    margin: 0 auto;
+    line-height: 2;
   }
 `;
 
@@ -56,7 +56,7 @@ const Quote = styled.blockquote`
     font-size: 2em;
     width: 1rem;
     height: 1rem;
-    color: white;
+    color: black;
   }
   :before {
     content: "“";
@@ -76,15 +76,6 @@ const Cite = styled.cite`
   text-align: left;
 `;
 
-const Strong = styled.strong`
-  color: #b8ffd0;
-  font-size: 1rem;
-
-  @media (min-width: 768px) {
-    font-size: 2rem;
-  }
-`;
-
 const BlockQuote = ({ quote, cite }) => {
   const data = useStaticQuery(graphql`
     query {
@@ -101,17 +92,16 @@ const BlockQuote = ({ quote, cite }) => {
   const { fluid } = data.image.sharp;
   console.log({ fluid });
   return (
-    <ImageBackground Tag="section" fluid={fluid} fadeIn="soft">
-      <TextBox>
-        <Quote>
-          <Strong>EVERYTHING</Strong> can be taken from a man/woman but one
-          thing: the last of the human freedoms - to <Strong>choose</Strong>{" "}
-          one's attitude in <Strong>any</Strong> given set of circumstances, to
-          choose one's own way
-        </Quote>
-        <Cite>Victor E. Frankl</Cite>
-      </TextBox>
-    </ImageBackground>
+    // <ImageBackground Tag="section" fluid={fluid} fadeIn="soft">
+    <TextBox>
+      <Quote>
+        Everything can be taken from a man/woman but one thing: the last of the
+        human freedoms - to choose one's attitude in any given set of
+        circumstances, to choose one's own way
+      </Quote>
+      <Cite>Victor E. Frankl</Cite>
+    </TextBox>
+    // </ImageBackground>
   );
 };
 

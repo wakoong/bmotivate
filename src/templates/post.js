@@ -32,14 +32,12 @@ export const query = graphql`
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 20em auto;
+  grid-template-rows: 70vh auto;
   grid-template-columns: 1fr;
   height: 100%;
   max-width: 680px;
   margin: 3.75em auto 0 auto;
 `;
-
-const ImageWrapper = styled.div``;
 
 const PostWrapper = styled.div`
   min-height: calc(100vh - 25em);

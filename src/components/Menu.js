@@ -74,6 +74,10 @@ const MenuContainer = styled.nav`
       color: white;
     }
   }
+
+  h3 {
+    letter-spacing: 0.05em;
+  }
 `;
 
 const Block = styled.div`
