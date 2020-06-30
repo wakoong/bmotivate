@@ -1,5 +1,6 @@
 // React imports
 import React from "react";
+import { Link } from "gatsby";
 // Other imports
 import styled from "@emotion/styled";
 
@@ -9,6 +10,7 @@ const Container = styled.div`
   justify-content: center;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
   height: 100vh;
+  width: 100vw;
   text-align: left;
   padding: 4em;
   position: absolute;
@@ -18,8 +20,8 @@ const Container = styled.div`
   right: 0;
   transition: transform 0.3s ease-in-out;
 
-  @media (max-width: ${({ theme }) => theme.mobile}) {
-    width: 100%;
+  @media (min-width: 768px) {
+    width: 50vw;
   }
 
   a {
@@ -32,11 +34,6 @@ const Container = styled.div`
     text-decoration: none;
     transition: color 0.3s linear;
 
-    @media (max-width: ${({ theme }) => theme.mobile}) {
-      font-size: 1.5rem;
-      text-align: center;
-    }
-
     &:hover {
       color: ${({ theme }) => theme.primaryHover};
     }
@@ -46,7 +43,7 @@ const Container = styled.div`
 const MenuContainer = styled.nav`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   background: black;
   color: white;
   height: 100vh;
@@ -74,7 +71,7 @@ const MenuContainer = styled.nav`
     }
 
     &:hover {
-      color: ${({ theme }) => theme.primaryHover};
+      color: white;
     }
   }
 `;
@@ -83,7 +80,8 @@ const Block = styled.div`
   width: 100%;
   padding: 1em;
   margin-bottom: 1em;
-  border-bottom: 1px solid white;
+  border-bottom: ${(props) => (props.border ? "1px solid white" : "")};
+  text-align: ${(props) => (props.align ? props.align : "start")};
 `;
 
 const Menu = ({ open, toggleMenu }) => {
@@ -91,12 +89,19 @@ const Menu = ({ open, toggleMenu }) => {
   console.log({ open, isHidden });
   return (
     <Container open={open} aria-hidden={!isHidden}>
-      {/* <MenuContainer> */}
-      <Block>
-        <div>About</div>
-        <div>Story</div>
-      </Block>
-      {/* </MenuContainer> */}
+      <MenuContainer>
+        <Block border>
+          <Link to="/about" onClick={() => toggleMenu(!open)}>
+            <div>About</div>
+          </Link>
+          <Link to="/stories" onClick={() => toggleMenu(!open)}>
+            <div>Stories</div>
+          </Link>
+        </Block>
+        <Block align="end">
+          <h3>B MOTIVATE</h3>
+        </Block>
+      </MenuContainer>
     </Container>
   );
 };

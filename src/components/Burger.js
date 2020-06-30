@@ -20,7 +20,7 @@ const Container = styled.div`
 
   span {
     width: 2rem;
-    height: 0.25rem;
+    height: 0.1em;
     background: ${({ open }) => (open ? "white" : "black")};
     border-radius: 10px;
     transition: all 0.3s linear;
