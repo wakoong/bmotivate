@@ -18,12 +18,6 @@ const Container = styled.nav`
   background: white;
   z-index: 1000;
   font-weight: bold;
-
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 0.9em;
-    }
-  }
 `;
 
 const Block = styled.div`
@@ -34,6 +28,17 @@ const Block = styled.div`
 
   span {
     margin-right: 1.5em;
+  }
+
+  h1 {
+    color: black;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 0.9em;
+    }
   }
 `;
 

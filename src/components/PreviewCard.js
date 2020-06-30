@@ -43,6 +43,7 @@ const PreviewCard = ({ post }) => {
         css={css`
           * {
             margin-top: 0;
+            object-position: top;
           }
         `}
         fluid={post.images.sharp.fluid}
